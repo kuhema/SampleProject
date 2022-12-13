@@ -1,0 +1,43 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.0'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.kuehma.sample.project'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	[
+			'org.springframework.boot:spring-boot-starter-jersey',
+			'org.springframework.boot:spring-boot-starter-web',
+			'com.fasterxml.jackson.core:jackson-core',
+			'com.fasterxml.jackson.core:jackson-databind',
+			'com.fasterxml.jackson.core:jackson-annotations'
+
+	].each { dependency ->
+		compileOnly dependency
+		implementation dependency
+	}
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

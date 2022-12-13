@@ -1,0 +1,8 @@
+.DS_Store
+.gradle/
+.idea/
+/build
+/buildSrc/build/
+/gradlew
+/gradlew.bat
+/wrapper/
